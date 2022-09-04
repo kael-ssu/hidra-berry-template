@@ -1,9 +1,85 @@
 import { FormGroup, FormControlLabel, SvgComponent, SwitchBomba, SwitchValvBomba, SwitchValvDreno } from './waterplant-components';
-//import { database, ref, onValue } from "../firebase";
+import { database, ref, onValue } from '../../../firebase.js';
 import { useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid';
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
+import { styled, useTheme } from '@mui/material/styles';
+import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import Leituras from './Leituras';
+
+const CardWrapper = styled(MainCard)(({ theme }) => ({
+    backgroundColor: theme.palette.secondary.dark,
+    color: '#fff',
+    overflow: 'hidden',
+    position: 'relative',
+    '&:after': {
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        borderRadius: '50%',
+        top: -85,
+        right: -95,
+        [theme.breakpoints.down('sm')]: {
+            top: -105,
+            right: -140
+        }
+    },
+    '&:before': {
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        borderRadius: '50%',
+        top: -125,
+        right: -15,
+        opacity: 0.5,
+        [theme.breakpoints.down('sm')]: {
+            top: -155,
+            right: -70
+        }
+    }
+}));
+
+const BlueCardWrapper = styled(MainCard)(({ theme }) => ({
+    backgroundColor: theme.palette.primary.dark,
+    color: '#fff',
+    overflow: 'hidden',
+    position: 'relative',
+    '&>div': {
+        position: 'relative',
+        zIndex: 5
+    },
+    '&:after': {
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        borderRadius: '50%',
+        zIndex: 1,
+        top: -85,
+        right: -95,
+        [theme.breakpoints.down('sm')]: {
+            top: -105,
+            right: -140
+        }
+    },
+    '&:before': {
+        content: '""',
+        position: 'absolute',
+        zIndex: 1,
+        width: 210,
+        height: 210,
+        borderRadius: '50%',
+        top: -125,
+        right: -15,
+        opacity: 0.5,
+        [theme.breakpoints.down('sm')]: {
+            top: -155,
+            right: -70
+        }
+    }
+}));
 
 export default function WaterPlant() {
     // Ip da esp32
@@ -22,7 +98,7 @@ export default function WaterPlant() {
     const [sensorCisterna, setSensoresCisterna] = useState(Number);
     const [sensorPoco, setSensoresPoco] = useState(Number);
 
-    /*useEffect(() => {
+    useEffect(() => {
         const changesListener = onValue(ref(database, '/'), (snapshot) => {
             setEspIp(snapshot.child('espIp').val().toString());
 
@@ -37,35 +113,59 @@ export default function WaterPlant() {
             setNivelAproxCisterna(snapshot.child('nivelAproxPoco').val());
             setNivelAproxPoco(snapshot.child('nivelAproxCisterna').val());
         });
-    });*/
+    });
 
     return (
         <MainCard>
-            <Grid container spacing={gridSpacing}>
+            <Grid container spacing={gridSpacing} alignItems="center">
                 <Grid item xs={12} xl={5}>
-                    <Grid container alignItems="center" justifyContent="space-between">
+                    <Grid container direction="column" justifyContent="space-evenly" alignItems="stretch">
+                        <Grid item sx={{ mb: 3 }}>
+                            <BlueCardWrapper border={false} content={false}>
+                                <Box sx={{ p: 2.25 }}>
+                                    <Leituras />
+                                </Box>
+                            </BlueCardWrapper>
+                        </Grid>
                         <Grid item>
-                            <FormGroup>
-                                <FormControlLabel
-                                    control={<SwitchBomba bombaOn={bombaOn} eletrovalAberta={eletroValSubOn} ip={espIp} />}
-                                    label="Bomba"
-                                />
-                                <FormControlLabel
-                                    control={<SwitchValvBomba aberta={eletroValSubOn} bombaOn={bombaOn} ip={espIp} />}
-                                    label="Eletroválvula de subida"
-                                />
-                                <FormControlLabel
-                                    control={<SwitchValvDreno aberta={eletroValDesOn} ip={espIp} />}
-                                    label="Eletroválvula de descida"
-                                />
-                            </FormGroup>
+                            <CardWrapper border={false} content={false}>
+                                <Box sx={{ p: 2.25 }}>
+                                    <FormGroup>
+                                        <FormControlLabel
+                                            control={<SwitchBomba bombaOn={bombaOn} eletrovalAberta={eletroValSubOn} ip={espIp} />}
+                                            label={
+                                                <Typography variant="h3" color="white">
+                                                    Bomba
+                                                </Typography>
+                                            }
+                                            sx={{ m: 1 }}
+                                        />
+                                        <FormControlLabel
+                                            control={<SwitchValvBomba aberta={eletroValSubOn} bombaOn={bombaOn} ip={espIp} />}
+                                            label={
+                                                <Typography variant="h3" color="white">
+                                                    Eletroválvula de subida
+                                                </Typography>
+                                            }
+                                            sx={{ m: 1 }}
+                                        />
+                                        <FormControlLabel
+                                            control={<SwitchValvDreno aberta={eletroValDesOn} ip={espIp} />}
+                                            label={
+                                                <Typography variant="h3" color="white">
+                                                    Eletroválvula de descida
+                                                </Typography>
+                                            }
+                                            sx={{ m: 1 }}
+                                        />
+                                    </FormGroup>
+                                </Box>
+                            </CardWrapper>
                         </Grid>
                     </Grid>
                 </Grid>
 
                 <Grid item xs={12} xl={7}>
-                    {/*<FormDialog espIp={espIp} /> ---> CONFIGURACOES*/}
-
                     <SvgComponent
                         bomba={bombaOn}
                         eletroval_sub={eletroValSubOn}
