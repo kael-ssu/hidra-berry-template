@@ -4,12 +4,11 @@ import { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 
 // project imports
-import EarningCard from './EarningCard';
-import PopularCard from './PopularCard';
-import TotalOrderLineChartCard from './TotalOrderLineChartCard';
+import DailyUsage from './DailyUsage';
+import Graphics from './Graphics';
+import MonthlyYearlyUsage from './MonthlyYearlyUsage';
 import TotalIncomeDarkCard from './TotalIncomeDarkCard';
 import TotalIncomeLightCard from './TotalIncomeLightCard';
-import TotalGrowthBarChart from './TotalGrowthBarChart';
 import { gridSpacing } from 'store/constant';
 import WaterPlant from './WaterPlant';
 
@@ -26,10 +25,10 @@ const Dashboard = () => {
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
                     <Grid item lg={4} md={6} sm={6} xs={12}>
-                        <EarningCard isLoading={isLoading} />
+                        <DailyUsage isLoading={isLoading} />
                     </Grid>
                     <Grid item lg={4} md={6} sm={6} xs={12}>
-                        <TotalOrderLineChartCard isLoading={isLoading} />
+                        <MonthlyYearlyUsage isLoading={isLoading} />
                     </Grid>
                     <Grid item lg={4} md={12} sm={12} xs={12}>
                         <Grid container spacing={gridSpacing}>
@@ -49,7 +48,7 @@ const Dashboard = () => {
                         <WaterPlant />
                     </Grid>
                     <Grid item xs={12} xl={4}>
-                        <PopularCard isLoading={isLoading} />
+                        <Graphics isLoading={isLoading} />
                     </Grid>
                 </Grid>
             </Grid>
