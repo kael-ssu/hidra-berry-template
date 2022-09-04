@@ -77,7 +77,7 @@ const FirebaseLogin = ({ ...others }) => {
                             <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
                                 <img src={Google} alt="google" width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }} />
                             </Box>
-                            Sign in with Google
+                            Entrar com Google
                         </Button>
                     </AnimateButton>
                 </Grid>
@@ -105,7 +105,7 @@ const FirebaseLogin = ({ ...others }) => {
                             disableRipple
                             disabled
                         >
-                            OR
+                            OU
                         </Button>
 
                         <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -113,20 +113,20 @@ const FirebaseLogin = ({ ...others }) => {
                 </Grid>
                 <Grid item xs={12} container alignItems="center" justifyContent="center">
                     <Box sx={{ mb: 2 }}>
-                        <Typography variant="subtitle1">Sign in with Email address</Typography>
+                        <Typography variant="subtitle1">Entrar com endereço Email</Typography>
                     </Box>
                 </Grid>
             </Grid>
 
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    email: '',
+                    password: '',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                    password: Yup.string().max(255).required('Password is required')
+                    email: Yup.string().email('Por favor, insira um email válido').max(255).required('O email é obrigatório'),
+                    password: Yup.string().max(255).required('A senha é obrigatória')
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
@@ -147,7 +147,7 @@ const FirebaseLogin = ({ ...others }) => {
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit} {...others}>
                         <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                            <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+                            <InputLabel htmlFor="outlined-adornment-email-login">Email / Nome de usuário</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-email-login"
                                 type="email"
@@ -170,7 +170,7 @@ const FirebaseLogin = ({ ...others }) => {
                             error={Boolean(touched.password && errors.password)}
                             sx={{ ...theme.typography.customInput }}
                         >
-                            <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
+                            <InputLabel htmlFor="outlined-adornment-password-login">Senha</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-password-login"
                                 type={showPassword ? 'text' : 'password'}
@@ -210,10 +210,10 @@ const FirebaseLogin = ({ ...others }) => {
                                         color="primary"
                                     />
                                 }
-                                label="Remember me"
+                                label="Mantenha-me conectado"
                             />
                             <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
-                                Forgot Password?
+                                Esqueceu sua senha?
                             </Typography>
                         </Stack>
                         {errors.submit && (
@@ -233,7 +233,7 @@ const FirebaseLogin = ({ ...others }) => {
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    Sign in
+                                    Entrar
                                 </Button>
                             </AnimateButton>
                         </Box>

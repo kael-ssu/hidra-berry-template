@@ -46,14 +46,14 @@ const Login = () => {
                                                         gutterBottom
                                                         variant={matchDownSM ? 'h3' : 'h2'}
                                                     >
-                                                        Hi, Welcome Back
+                                                        Bem-vindo de volta
                                                     </Typography>
                                                     <Typography
                                                         variant="caption"
                                                         fontSize="16px"
                                                         textAlign={matchDownSM ? 'center' : 'inherit'}
                                                     >
-                                                        Enter your credentials to continue
+                                                        Insira suas credenciais para continuar
                                                     </Typography>
                                                 </Stack>
                                             </Grid>
@@ -73,7 +73,7 @@ const Login = () => {
                                                 variant="subtitle1"
                                                 sx={{ textDecoration: 'none' }}
                                             >
-                                                Don&apos;t have an account?
+                                                Não tem uma conta?
                                             </Typography>
                                         </Grid>
                                     </Grid>
