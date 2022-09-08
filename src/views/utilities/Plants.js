@@ -2,9 +2,6 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { Box, Card, Grid } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 import { Typography } from '@mui/material';
 import planta from '../../assets/images/planta.png';
 
@@ -13,6 +10,8 @@ import SubCard from 'ui-component/cards/SubCard';
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 import { Image } from 'react';
+import PopUpDelete from 'ui-component/PopUpDelete';
+import PopUpEdit from 'ui-component/PopUpEdit';
 
 const users = [
     {
@@ -200,12 +199,8 @@ const PlantBox = ({ name }) => (
                             <Typography>{name}</Typography>
                         </Grid>
                         <Grid item>
-                            <IconButton aria-label="editar">
-                                <EditIcon />
-                            </IconButton>
-                            <IconButton aria-label="apagar">
-                                <DeleteIcon />
-                            </IconButton>
+                            <PopUpEdit />
+                            <PopUpDelete />
                         </Grid>
                     </Grid>
                 </Grid>

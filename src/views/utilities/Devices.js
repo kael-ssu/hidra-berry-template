@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { Box, Card, Grid } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import PopUpDelete from 'ui-component/PopUpDelete';
+import PopUpEdit from 'ui-component/PopUpEdit';
 import { Typography } from '@mui/material';
 
 // project imports
@@ -16,6 +15,31 @@ const devices = [
     {
         id: 1,
         name: 'Válvula de subida',
+        phone: '1-770-736-8031 x56442'
+    },
+    {
+        id: 2,
+        name: 'Válvula de descida',
+        phone: '1-770-736-8031 x56442'
+    },
+    {
+        id: 3,
+        name: 'Sensor de fluxo de subida',
+        phone: '1-770-736-8031 x56442'
+    },
+    {
+        id: 4,
+        name: 'Sensor de fluxo de descida',
+        phone: '1-770-736-8031 x56442'
+    },
+    {
+        id: 5,
+        name: 'Bomba',
+        phone: '1-770-736-8031 x56442'
+    },
+    {
+        id: 6,
+        name: 'Sensor de nível',
         phone: '1-770-736-8031 x56442'
     }
 ];
@@ -41,12 +65,8 @@ const DeviceBox = ({ name }) => (
                             <Typography>{name}</Typography>
                         </Grid>
                         <Grid item>
-                            <IconButton aria-label="editar">
-                                <EditIcon />
-                            </IconButton>
-                            <IconButton aria-label="apagar">
-                                <DeleteIcon />
-                            </IconButton>
+                            <PopUpEdit />
+                            <PopUpDelete />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -69,45 +89,13 @@ const DevicesExhibition = () => (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="0" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="1" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="2" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="3" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="4" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="5" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="6" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="7" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="8" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="9" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="10" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="11" />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <DeviceBox name="12" />
-                    </Grid>
+                    {devices.map((device) => {
+                        return (
+                            <Grid item xs={12} sm={6} md={4} lg={3}>
+                                <DeviceBox name={device.name} />
+                            </Grid>
+                        );
+                    })}
                 </Grid>
             </Grid>
         </Grid>

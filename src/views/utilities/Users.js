@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { Box, Card, Grid } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 
 // project imports
 import SubCard from 'ui-component/cards/SubCard';
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 import { Typography } from '@mui/material';
+import PopUpDelete from 'ui-component/PopUpDelete';
+import PopUpEdit from 'ui-component/PopUpEdit';
+import { useState } from 'react';
 
 const users = [
     {
@@ -187,35 +187,34 @@ const users = [
 
 // ============================|| UserS EXHIBITION ||============================ //
 
-const UsersExhibition = () => (
-    <MainCard title="Usuários">
-        <Grid container spacing={gridSpacing}>
-            {users.map((user) => {
-                return (
-                    <Grid item xs={12}>
-                        <SubCard
-                            title={user.username}
-                            secondary={
-                                <>
-                                    <IconButton aria-label="editar">
-                                        <EditIcon />
-                                    </IconButton>
+const UsersExhibition = () => {
+    const [exclude, setExclude] = useState(false);
 
-                                    <IconButton aria-label="apagar">
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </>
-                            }
-                        >
-                            <Typography>Nome: {user.name}</Typography>
-                            <Typography>Email: {user.email}</Typography>
-                            <Typography>Telefone: {user.phone}</Typography>
-                        </SubCard>
-                    </Grid>
-                );
-            })}
-        </Grid>
-    </MainCard>
-);
+    return (
+        <MainCard title="Usuários">
+            <Grid container spacing={gridSpacing}>
+                {users.map((user) => {
+                    return (
+                        <Grid item xs={12}>
+                            <SubCard
+                                title={user.username}
+                                secondary={
+                                    <>
+                                        <PopUpEdit />
+                                        <PopUpDelete />
+                                    </>
+                                }
+                            >
+                                <Typography>Nome: {user.name}</Typography>
+                                <Typography>Email: {user.email}</Typography>
+                                <Typography>Telefone: {user.phone}</Typography>
+                            </SubCard>
+                        </Grid>
+                    );
+                })}
+            </Grid>
+        </MainCard>
+    );
+};
 
 export default UsersExhibition;
