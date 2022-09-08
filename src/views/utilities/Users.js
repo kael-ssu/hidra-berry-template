@@ -2,11 +2,15 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { Box, Card, Grid } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 // project imports
 import SubCard from 'ui-component/cards/SubCard';
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
+import { Typography } from '@mui/material';
 
 const users = [
     {
@@ -24,13 +28,7 @@ const users = [
                 lng: '81.1496'
             }
         },
-        phone: '1-770-736-8031 x56442',
-        website: 'hildegard.org',
-        company: {
-            name: 'Romaguera-Crona',
-            catchPhrase: 'Multi-layered client-server neural-net',
-            bs: 'harness real-time e-markets'
-        }
+        phone: '1-770-736-8031 x56442'
     },
     {
         id: 2,
@@ -47,13 +45,7 @@ const users = [
                 lng: '-34.4618'
             }
         },
-        phone: '010-692-6593 x09125',
-        website: 'anastasia.net',
-        company: {
-            name: 'Deckow-Crist',
-            catchPhrase: 'Proactive didactic contingency',
-            bs: 'synergize scalable supply-chains'
-        }
+        phone: '010-692-6593 x09125'
     },
     {
         id: 3,
@@ -70,13 +62,7 @@ const users = [
                 lng: '-47.0653'
             }
         },
-        phone: '1-463-123-4447',
-        website: 'ramiro.info',
-        company: {
-            name: 'Romaguera-Jacobson',
-            catchPhrase: 'Face to face bifurcated interface',
-            bs: 'e-enable strategic applications'
-        }
+        phone: '1-463-123-4447'
     },
     {
         id: 4,
@@ -93,13 +79,7 @@ const users = [
                 lng: '-164.2990'
             }
         },
-        phone: '493-170-9623 x156',
-        website: 'kale.biz',
-        company: {
-            name: 'Robel-Corkery',
-            catchPhrase: 'Multi-tiered zero tolerance productivity',
-            bs: 'transition cutting-edge web services'
-        }
+        phone: '493-170-9623 x156'
     },
     {
         id: 5,
@@ -116,13 +96,7 @@ const users = [
                 lng: '62.5342'
             }
         },
-        phone: '(254)954-1289',
-        website: 'demarco.info',
-        company: {
-            name: 'Keebler LLC',
-            catchPhrase: 'User-centric fault-tolerant solution',
-            bs: 'revolutionize end-to-end systems'
-        }
+        phone: '(254)954-1289'
     },
     {
         id: 6,
@@ -139,13 +113,7 @@ const users = [
                 lng: '71.7478'
             }
         },
-        phone: '1-477-935-8478 x6430',
-        website: 'ola.org',
-        company: {
-            name: 'Considine-Lockman',
-            catchPhrase: 'Synchronised bottom-line interface',
-            bs: 'e-enable innovative applications'
-        }
+        phone: '1-477-935-8478 x6430'
     },
     {
         id: 7,
@@ -162,13 +130,7 @@ const users = [
                 lng: '21.8984'
             }
         },
-        phone: '210.067.6132',
-        website: 'elvis.io',
-        company: {
-            name: 'Johns Group',
-            catchPhrase: 'Configurable multimedia task-force',
-            bs: 'generate enterprise e-tailers'
-        }
+        phone: '210.067.6132'
     },
     {
         id: 8,
@@ -185,13 +147,7 @@ const users = [
                 lng: '-120.7677'
             }
         },
-        phone: '586.493.6943 x140',
-        website: 'jacynthe.com',
-        company: {
-            name: 'Abernathy Group',
-            catchPhrase: 'Implemented secondary concept',
-            bs: 'e-enable extensible e-tailers'
-        }
+        phone: '586.493.6943 x140'
     },
     {
         id: 9,
@@ -208,13 +164,7 @@ const users = [
                 lng: '-168.8889'
             }
         },
-        phone: '(775)976-6794 x41206',
-        website: 'conrad.com',
-        company: {
-            name: 'Yost and Sons',
-            catchPhrase: 'Switchable contextually-based project',
-            bs: 'aggregate real-time technologies'
-        }
+        phone: '(775)976-6794 x41206'
     },
     {
         id: 10,
@@ -231,38 +181,9 @@ const users = [
                 lng: '57.2232'
             }
         },
-        phone: '024-648-3804',
-        website: 'ambrose.net',
-        company: {
-            name: 'Hoeger LLC',
-            catchPhrase: 'Centralized empowering task-force',
-            bs: 'target end-to-end models'
-        }
+        phone: '024-648-3804'
     }
 ];
-
-// ===============================|| User CARD ||=============================== //
-
-const UserBox = ({ name }) => (
-    <Card sx={{ mb: 3, boxShadow: 4 }}>
-        <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                py: 4.5,
-                bgcolor: 'primary.light',
-                color: 'grey.800'
-            }}
-        >
-            <Box sx={{ color: 'inherit' }}>{name}</Box>
-        </Box>
-    </Card>
-);
-
-UserBox.propTypes = {
-    name: PropTypes.string.isRequired
-};
 
 // ============================|| UserS EXHIBITION ||============================ //
 
@@ -272,7 +193,24 @@ const UsersExhibition = () => (
             {users.map((user) => {
                 return (
                     <Grid item xs={12}>
-                        <SubCard title={user.name}></SubCard>
+                        <SubCard
+                            title={user.username}
+                            secondary={
+                                <>
+                                    <IconButton aria-label="editar">
+                                        <EditIcon />
+                                    </IconButton>
+
+                                    <IconButton aria-label="apagar">
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </>
+                            }
+                        >
+                            <Typography>Nome: {user.name}</Typography>
+                            <Typography>Email: {user.email}</Typography>
+                            <Typography>Telefone: {user.phone}</Typography>
+                        </SubCard>
                     </Grid>
                 );
             })}
