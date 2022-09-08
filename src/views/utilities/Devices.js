@@ -2,11 +2,23 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { Box, Card, Grid } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import { Typography } from '@mui/material';
 
 // project imports
 import SubCard from 'ui-component/cards/SubCard';
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
+
+const devices = [
+    {
+        id: 1,
+        name: 'Válvula de subida',
+        phone: '1-770-736-8031 x56442'
+    }
+];
 
 // ===============================|| Device CARD ||=============================== //
 
@@ -22,7 +34,26 @@ const DeviceBox = ({ name }) => (
                 color: 'grey.800'
             }}
         >
-            <Box sx={{ color: 'inherit' }}>{name}</Box>
+            <Grid container direction="column">
+                <Grid item>
+                    <Grid container direction="row" alignItems="center" justifyContent="space-between">
+                        <Grid item sx={{ pl: 4 }}>
+                            <Typography>{name}</Typography>
+                        </Grid>
+                        <Grid item>
+                            <IconButton aria-label="editar">
+                                <EditIcon />
+                            </IconButton>
+                            <IconButton aria-label="apagar">
+                                <DeleteIcon />
+                            </IconButton>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item>
+                    <Box sx={{ color: 'inherit' }}></Box>
+                </Grid>
+            </Grid>
         </Box>
     </Card>
 );
