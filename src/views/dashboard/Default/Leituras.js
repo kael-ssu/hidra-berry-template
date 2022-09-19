@@ -5,7 +5,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import Divider from '@mui/material/Divider';
 import { Typography, Grid } from '@mui/material';
 
-export default function Leituras() {
+export default function Leituras({ vazaoSubida, vazaoDescida, sensorCisterna, sensorPoco, nivelCisterna, nivelPoco }) {
     return (
         <Grid container direction="column" justifyContent="space-between">
             <Grid item sx={{ mb: 2 }}>
@@ -22,7 +22,7 @@ export default function Leituras() {
                     </Grid>
                     <Grid item>
                         <Typography variant="h3" color="inherit">
-                            50 l/min
+                            {vazaoSubida} l/min
                         </Typography>
                     </Grid>
                 </Grid>
@@ -36,7 +36,7 @@ export default function Leituras() {
                     </Grid>
                     <Grid item>
                         <Typography variant="h3" color="inherit">
-                            0 l/min
+                            {vazaoDescida} l/min
                         </Typography>
                     </Grid>
                 </Grid>
@@ -56,7 +56,7 @@ export default function Leituras() {
                     </Grid>
                     <Grid item>
                         <Typography variant="h3" color="inherit">
-                            100 l
+                            {nivelCisterna} l
                         </Typography>
                     </Grid>
                 </Grid>
@@ -70,7 +70,7 @@ export default function Leituras() {
                     </Grid>
                     <Grid item>
                         <Typography variant="h3" color="inherit">
-                            0 l
+                            {nivelPoco} l
                         </Typography>
                     </Grid>
                 </Grid>
