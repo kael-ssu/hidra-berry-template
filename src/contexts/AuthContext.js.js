@@ -9,7 +9,9 @@ import {
     resetPassword,
     deleteUser
 } from 'firebase/auth';
-import { database, ref, set } from 'firebase.js';
+import { Token, SuapClient } from 'client';
+import { CLIENT_ID, REDIRECT_URI, SUAP_URL, SCOPE } from 'settings.sample';
+require('js.cookie');
 
 const AuthContext = React.createContext();
 

@@ -16,6 +16,9 @@ import { useAuth } from '../../../../contexts/AuthContext.js';
 import { Alert } from '@mui/material';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Token, SuapClient } from 'client';
+import { CLIENT_ID, REDIRECT_URI, SUAP_URL, SCOPE } from 'settings.sample';
+require('js.cookie');
 
 const theme = createTheme();
 
@@ -24,10 +27,30 @@ export default function SignUp() {
     const passwordRef = useRef();
     const nameRef = useRef();
     const matriculaRef = useRef();
-    const { signup } = useAuth();
+    const { signup, login } = useAuth();
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState(false);
     const navigate = useNavigate();
+
+    var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
+    suap.init();
+
+    if (suap.isAuthenticated()) {
+        var scope = suap.getToken().getScope();
+        var callback = async function (response) {
+            console.log(JSON.stringify(response, null, 4));
+            try {
+                await signup(response.data.email, response.data.cpf, response.data.nome, response.data.identificacao);
+                navigate('/dashboard/default');
+            } catch {
+                await login(response.data.email, response.data.cpf);
+                navigate('/dashboard/default');
+            }
+        };
+        suap.getResource(scope, callback);
+    } else {
+        suap.logout();
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -56,6 +79,9 @@ export default function SignUp() {
                         alignItems: 'center'
                     }}
                 >
+                    <Box>
+                        <Button href={suap.getLoginURL()}>Entrar com SUAP</Button>
+                    </Box>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Box component="form" noValidate onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
