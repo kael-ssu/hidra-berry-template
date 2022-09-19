@@ -16,6 +16,9 @@ import { useAuth } from '../../../../contexts/AuthContext.js';
 import { Alert } from '@mui/material';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Token, SuapClient } from 'client';
+import { CLIENT_ID, REDIRECT_URI, SUAP_URL, SCOPE } from 'settings.sample';
+require('js.cookie');
 
 const theme = createTheme();
 
@@ -26,6 +29,9 @@ export default function Login() {
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState(false);
     const navigate = useNavigate();
+
+    var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
+    suap.init();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -54,6 +60,9 @@ export default function Login() {
                         alignItems: 'center'
                     }}
                 >
+                    <Box>
+                        <Button href={suap.getLoginURL()}>Entrar com SUAP</Button>
+                    </Box>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Box component="form" noValidate onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
