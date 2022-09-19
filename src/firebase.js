@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, onValue, set } from 'firebase/database';
+import { getDatabase, ref, onValue, set, get, child } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -24,5 +24,5 @@ const auth = getAuth(app);
 
 // Initialize Realtime Database and get a reference to the service
 const database = getDatabase(app);
-export { auth, database, ref, onValue, set };
+export { auth, database, ref, onValue, set, get, child };
 export default app;

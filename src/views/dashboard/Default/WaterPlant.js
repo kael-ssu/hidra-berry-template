@@ -123,13 +123,24 @@ export default function WaterPlant() {
                         <Grid item sx={{ mb: 3 }}>
                             <BlueCardWrapper border={false} content={false}>
                                 <Box sx={{ p: 2.25 }}>
-                                    <Leituras />
+                                    <Leituras
+                                        vazaoSubida={vazaoSubida}
+                                        vazaoDescida={vazaoDescida}
+                                        sensorCisterna={sensorCisterna}
+                                        sensorPoco={sensorPoco}
+                                        nivelCisterna={nivelAproxCisterna}
+                                        nivelPoco={nivelAproxPoco}
+                                    />
                                 </Box>
                             </BlueCardWrapper>
                         </Grid>
                         <Grid item>
                             <CardWrapper border={false} content={false}>
                                 <Box sx={{ p: 2.25 }}>
+                                    <Typography variant="h2" color="inherit">
+                                        Controles
+                                    </Typography>
+
                                     <FormGroup>
                                         <FormControlLabel
                                             control={<SwitchBomba bombaOn={bombaOn} eletrovalAberta={eletroValSubOn} ip={espIp} />}
