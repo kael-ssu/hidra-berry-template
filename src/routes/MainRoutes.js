@@ -12,6 +12,7 @@ const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')))
 const Users = Loadable(lazy(() => import('views/utilities/Users')));
 const Plants = Loadable(lazy(() => import('views/utilities/Plants')));
 const Devices = Loadable(lazy(() => import('views/utilities/Devices')));
+const UpdateProfile = Loadable(lazy(() => import('views/utilities/UpdateProfile')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -60,6 +61,15 @@ const MainRoutes = {
                 {
                     path: 'devices',
                     element: <Devices />
+                }
+            ]
+        },
+        {
+            path: '/',
+            children: [
+                {
+                    path: 'update-profile',
+                    element: <UpdateProfile />
                 }
             ]
         }
