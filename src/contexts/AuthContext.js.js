@@ -9,6 +9,7 @@ import {
     resetPassword,
     deleteUser
 } from 'firebase/auth';
+import { database, ref, set, get, remove, child } from 'firebase.js';
 import { Token, SuapClient } from 'client';
 import { CLIENT_ID, REDIRECT_URI, SUAP_URL, SCOPE } from 'settings.sample';
 require('js.cookie');
@@ -21,6 +22,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
+    const [userFirebase, setUserFirebase] = useState();
     const [loading, setLoading] = useState(true);
 
     function writeUserData(user) {
@@ -51,6 +53,11 @@ export function AuthProvider({ children }) {
     }
 
     function logout() {
+        var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
+        suap.init();
+        if (suap.isAuthenticated()) {
+            suap.logout();
+        }
         return signOut(auth);
     }
 
@@ -66,9 +73,20 @@ export function AuthProvider({ children }) {
         return updatePassword(currentUser, password);
     }
 
+    function deleteAccount(user) {
+        remove(child(ref(database), 'users/' + user.uid));
+        return deleteUser(user);
+    }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             setCurrentUser(user);
+            if (user != null) {
+                get(child(ref(database), 'users/' + user.uid)).then((snapshot) => {
+                    setUserFirebase(snapshot.val());
+                });
+            }
+
             setLoading(false);
         });
 
@@ -77,12 +95,14 @@ export function AuthProvider({ children }) {
 
     const value = {
         currentUser,
+        userFirebase,
         signup,
         login,
         logout,
         resetPassword,
         editEmail,
-        editPassword
+        editPassword,
+        deleteAccount
     };
 
     return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
