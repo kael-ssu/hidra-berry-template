@@ -15,6 +15,7 @@ specifiers:
   '@mui/utils': ^5.8.6
   '@tabler/icons': ^1.72.0
   apexcharts: ^3.35.3
+  axios: ^0.27.2
   eslint: ^8.19.0
   eslint-config-airbnb-base: ^15.0.0
   eslint-config-airbnb-typescript: ^17.0.0
@@ -31,6 +32,7 @@ specifiers:
   firebase: ^9.9.4
   formik: ^2.2.9
   framer-motion: ^6.3.16
+  js-cookie: ^3.0.1
   material-ui-popup-state: ^4.0.1
   prettier: ^2.7.1
   prop-types: ^15.8.1
@@ -59,9 +61,11 @@ dependencies:
   '@mui/utils': 5.10.3_react@18.2.0
   '@tabler/icons': 1.91.1_biqbaboplfbrettd7655fr4n2y
   apexcharts: 3.35.5
+  axios: 0.27.2
   firebase: 9.9.4
   formik: 2.2.9_react@18.2.0
   framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
+  js-cookie: 3.0.1
   material-ui-popup-state: 4.0.2_6xnkn2aqnlmdvuspwqrjexfduy
   prop-types: 15.8.1
   react: 18.2.0
@@ -3909,6 +3913,15 @@ packages:
     resolution: {integrity: sha512-32+ub6kkdhhWick/UjvEwRchgoetXqTK14INLqbGm5U2TzBkBNF3nQtLYm8ovxSkQWArjEQvftCKryjZaATu3w==}
     engines: {node: '>=4'}
 
+  /axios/0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+    dependencies:
+      follow-redirects: 1.15.1
+      form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /axobject-query/2.2.0:
     resolution: {integrity: sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==}
 
@@ -6010,6 +6023,15 @@ packages:
       mime-types: 2.1.35
     dev: false
 
+  /form-data/4.0.0:
+    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
+    engines: {node: '>= 6'}
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      mime-types: 2.1.35
+    dev: false
+
   /formik/2.2.9_react@18.2.0:
     resolution: {integrity: sha512-LQLcISMmf1r5at4/gyJigGn0gOwFbeEAlji+N9InZF6LIMXnFNkO42sCI8Jt84YZggpD4cPWObAZaxpEFtSzNA==}
     peerDependencies:
@@ -7348,6 +7370,11 @@ packages:
       - supports-color
       - ts-node
       - utf-8-validate
+    dev: false
+
+  /js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
     dev: false
 
   /js-tokens/4.0.0:
